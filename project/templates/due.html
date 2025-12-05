@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 class="title">Due List</h1>
+
+<div class="form-box">
+    <form action="/add_due" method="POST">
+
+        <select name="customer_id" required>
+            <option value="">Select Customer</option>
+            {% for c in customers %}
+            <option value="{{ c['id'] }}">{{ c['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <input name="amount" placeholder="Due Amount" required>
+
+        <button class="btn">Add Due</button>
+    </form>
+</div>
+
+<table class="styled-table">
+    <thead>
+        <tr><th>ID</th><th>Customer</th><th>Amount</th><th>Date</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+        {% for d in due %}
+        <tr>
+            <td>{{ d['id'] }}</td>
+            <td>{{ d['customer'] }}</td>
+            <td>{{ "%.2f"|format(d['amount']) }}</td>
+            <td>{{ d['date'] }}</td>
+            <td><a class="delete-btn" href="/delete_due/{{ d['id'] }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

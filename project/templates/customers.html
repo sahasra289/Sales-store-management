@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 class="title">Customers</h1>
+
+<div class="form-box">
+    <form action="/add_customer" method="POST">
+        <input name="name" placeholder="Customer Name" required>
+        <input name="phone" placeholder="Phone Number" required>
+        <input name="email" placeholder="Email">
+        <button class="btn">Add Customer</button>
+    </form>
+</div>
+
+<table class="styled-table">
+    <thead>
+        <tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+        {% for c in customers %}
+        <tr>
+            <td>{{ c['id'] }}</td>
+            <td>{{ c['name'] }}</td>
+            <td>{{ c['phone'] }}</td>
+            <td>{{ c['email'] }}</td>
+            <td><a class="delete-btn" href="/delete_customer/{{ c['id'] }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

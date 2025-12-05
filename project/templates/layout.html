@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Store Management System</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>🏪 Store DBMS</h2>
+    <a href="/">Dashboard</a>
+    <a href="/customers">Customers</a>
+    <a href="/sales">Sales</a>
+    <a href="/items">Items</a>
+    <a href="/due">Due List</a>
+</div>
+
+<div class="main">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="/static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 class="title">Dashboard Overview</h1>
+
+<div class="cards">
+    <a href="/customers" class="card">📘 <h2>Customers</h2><p>View & Add Customers</p></a>
+    <a href="/sales" class="card">💰 <h2>Sales</h2><p>Track Sales</p></a>
+    <a href="/items" class="card">📦 <h2>Items</h2><p>Manage Items</p></a>
+    <a href="/due" class="card">📄 <h2>Due List</h2><p>Pending Payments</p></a>
+</div>
+{% endblock %}

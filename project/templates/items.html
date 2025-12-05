@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 class="title">Items</h1>
+
+<div class="form-box">
+    <form action="/add_item" method="POST">
+        <input name="name" placeholder="Item Name" required>
+        <input name="stock" placeholder="Stock (integer)" required>
+        <input name="price" placeholder="Price" required>
+        <button class="btn">Add Item</button>
+    </form>
+</div>
+
+<table class="styled-table">
+    <thead>
+        <tr><th>ID</th><th>Name</th><th>Stock</th><th>Price</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+        {% for i in items %}
+        <tr>
+            <td>{{ i['id'] }}</td>
+            <td>{{ i['name'] }}</td>
+            <td>{{ i['stock'] }}</td>
+            <td>{{ "%.2f"|format(i['price']) }}</td>
+            <td><a class="delete-btn" href="/delete_item/{{ i['id'] }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

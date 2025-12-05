@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 class="title">Sales</h1>
+
+<div class="form-box">
+    <form action="/add_sale" method="POST">
+
+        <select name="customer_id" required>
+            <option value="">Select Customer</option>
+            {% for c in customers %}
+            <option value="{{ c['id'] }}">{{ c['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="item_id" required>
+            <option value="">Select Item</option>
+            {% for i in items %}
+            <option value="{{ i['id'] }}">{{ i['name'] }} - (Stock: {{ i['stock'] }}) - ₹{{ "%.2f"|format(i['price']) }}</option>
+            {% endfor %}
+        </select>
+
+        <input name="quantity" placeholder="Quantity" required>
+
+        <button class="btn">Add Sale</button>
+    </form>
+</div>
+
+<table class="styled-table">
+    <thead>
+        <tr><th>ID</th><th>Customer</th><th>Item</th><th>Qty</th><th>Total</th><th>Date</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+        {% for s in sales %}
+        <tr>
+            <td>{{ s['id'] }}</td>
+            <td>{{ s['customer'] }}</td>
+            <td>{{ s['item'] }}</td>
+            <td>{{ s['quantity'] }}</td>
+            <td>{{ "%.2f"|format(s['total']) }}</td>
+            <td>{{ s['date'] }}</td>
+            <td><a class="delete-btn" href="/delete_sale/{{ s['id'] }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
